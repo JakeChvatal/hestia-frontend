@@ -15,8 +15,6 @@ const LocationsR = (state = initialState, action) => {
                 }}).catch(error => {
                     console.log(error);
                 });
-
-        
     }
 
     return initialState;

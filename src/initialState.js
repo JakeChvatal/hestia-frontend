@@ -14,6 +14,10 @@ export default initialState = {
         "long": 0
     },
     "stats": {
-        
+        lat: 0,
+        long: 0,
+        numRiders: 0,
+        maxNumRiders: 0,
+        pending: false
     }
 }
