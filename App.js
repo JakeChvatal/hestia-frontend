@@ -8,14 +8,34 @@ import Login from './src/pages/Login.js'
 import MainMap from './src/pages/MainMap.js';
 import MapView from 'react-native-maps';
 
+import store from './store';
+import Provider from 'react-redux'; 
+
 export default class App extends Component {
-  constructor(props) {
+  constructor(props) { 
     super(props);
     this.state = {
-      login: false
+      login: false,
+      latitude: 0,
+      longitude: 0
     };
   }
   
+  findCurrentLocation() {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        const latitude = JSON.stringify(position.coords.latitude);
+        const longitude = JSON.stringify(position.coords.longitude);
+
+        this.setState({
+          latitude,
+          longitude
+        })
+      },
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );    
+  }
+
   onLogin() {
     onreadystatechange = () => {
       this.setState({
@@ -34,7 +54,12 @@ export default class App extends Component {
   }
   
   render() {
-    return this.displayPage(this.state.login);
+    store = " ";
+    return (
+    <Provider store={store}>
+      {this.displayPage(this.state.login)}
+    </Provider>
+    );
   }
 }
 

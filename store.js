@@ -1,14 +1,6 @@
 // store.js
 
 import { createStore, combineReducers } from 'redux';
-import placeReducer from './reducers/placeReducer';
-
-const rootReducer = combineReducers({
-  places: placeReducer
-});
-
-const configureStore = () => {
-  return createStore(rootReducer);
-}
-
-export default configureStore;
+//import rootReducer from './reducers/placeReducer';
+ 
+export default configureStore; 
