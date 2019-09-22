@@ -32,13 +32,15 @@ class MainMap extends Component {
     renderZone(x, y, rad) {
         return <Circle center = {{latitude: this.fixUndefined(x), longitude: this.fixUndefined(y)}} radius = {rad} />
     }
-    
+
     render() {
-        return <View> <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 0, paddingBottom: 600 } }
+        return <View> 
+        <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 0, paddingBottom: 600 } }
             initialRegion = {{latitude: this.fixUndefined(this.props.pickupLat), longitude: this.fixUndefined(this.props.pickupLong), latitudeDelta: 1, longitudeDelta: 1}} >
             </MapView>
             {this.renderZone(this.props.pickupLat, this.props.pickupLong, 10)}
-            <PersonLocator/> </View>;
+        <PersonLocator/> 
+        </View>;
     }
 }
 

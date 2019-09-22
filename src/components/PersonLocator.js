@@ -37,13 +37,19 @@ class PersonLocator1 extends Component {
 
     // sends people to map address
     onAddressClick(lat, long) {
-    const num1 = this.fixUndefined(lat);
+        const num1 = this.fixUndefined(lat);
         const num2 = this.fixUndefined(long);
         const add = this.formatAddress(num1, num2);
         Linking.openURL(add); 
-    
+
         this.setState({
-            findingPerson: false
+            findingPerson: !this.state
+        });
+    }
+
+    onDropoffClick(x) {
+        this.setState({
+            findingPerson: true
         });
     }
 
@@ -54,12 +60,12 @@ class PersonLocator1 extends Component {
     displayButton() {
         if(this.state.findingPerson) {
             return <Button 
-            onPress = { () => this.onAddressClick()}
+            onPress = { () => this.onAddressClick(this.props.pickupLat, this.props.pickupLong)}
             title = "Navigate to Person" containerStyle={{flex: 0, marginLeft: 40, marginRight: 40, marginTop: 10}}>
         </Button>
         } else {
             return <Button 
-            onPress = {this.props.depositedPeople}
+            onPress = {() => this.onDropoffClick(this.state.findingPerson)}
             title = "Drop Off" containerStyle={{flex: 0, marginLeft: 40, marginRight: 40, marginTop: 10}}>
         </Button>
         }
