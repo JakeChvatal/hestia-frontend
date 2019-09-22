@@ -9,21 +9,15 @@ import MapPage from './MapPage.js';
 import {Provider} from 'react-redux'; 
 import configureStore from '../../store';
 import { connect } from 'react-redux'
-import {login} from '../actions/index';
+import { LOGIN } from '../actions/types.js';
 
 class AppMain extends Component {
-    displayPage(loggedin) {
-      return <MapPage />
-
-      if(loggedin) {
-        return <MapPage />
-      } else { 
-        return <Login onLogin = {this.props.onLogin()} />
-      }
-    }
-
       render() {
-        return this.displayPage(this.props.loggedin);
+        if(this.props.loggedin) {
+          return <MapPage />
+        } else {
+          return <Login onLogin = {this.props.onLogin} />
+        }
       }
 }
 
@@ -36,7 +30,7 @@ function mapStateToProps(state) {
   function mapDispatchToProps(dispatch) {
     return {
       onLogin: () => {
-        dispatch(login());
+        dispatch(LOGIN);
       }
     }
   }

@@ -58,11 +58,16 @@ class MainMap extends Component {
         <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 0, paddingBottom: 600 } }
             initialRegion = {{latitude: this.fixUndefined(this.props.pickupLat), longitude: this.fixUndefined(this.props.pickupLong), latitudeDelta: 1, longitudeDelta: 1}} >
             </MapView>
-            <RenderMe x = {this.props.myLat} y = {this.props.myLong} rad = {500} />
+            
         <PersonLocator/> 
         </View>;
     }
 }
+
+/*
+// <RenderZone x = {this.props.curLat} y = {this.props.curLong} rad = {10}/>
+            <RenderZone x = {this.props.pickupLat} y = {this.props.pickupLong} rad = {10} color = {`#000fff`}/>
+            */
 
 function mapStateToProps (state) {
     return {

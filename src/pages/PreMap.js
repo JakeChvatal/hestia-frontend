@@ -19,13 +19,17 @@ class PreMap extends Component {
     }
 
     render() {
-        return <View> 
-        <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 0, paddingBottom: 600 } }
-            initialRegion = {{latitude: this.fixUndefined(this.props.pickupLat), longitude: this.fixUndefined(this.props.pickupLong), latitudeDelta: 1, longitudeDelta: 1}} >
-            </MapView>
-            <RenderMe x = {this.props.myLat} y = {this.props.myLong} rad = {500} />
-        <PersonLocator/> 
-        </View>;
+        if(this.props.pending) {
+            return <ShowSurvey p = {this.props.pending}/>;
+        } else {
+            return <View> 
+            <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 0, paddingBottom: 600 } }
+                initialRegion = {{latitude: this.fixUndefined(this.props.pickupLat), longitude: this.fixUndefined(this.props.pickupLong), latitudeDelta: 1, longitudeDelta: 1}} >
+                </MapView>
+                <RenderMe x = {this.props.myLat} y = {this.props.myLong} rad = {500} />
+            <PersonLocator/> 
+            </View>;
+        }
     }
 }
 
