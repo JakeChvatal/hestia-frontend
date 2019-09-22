@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import MapView, { PROVIDER_GOOGLE, Marker, Circle } from 'react-native-maps';
+import MapView, { MapContainer, PROVIDER_GOOGLE, Marker, Circle } from 'react-native-maps';
 import PersonLocator from '../components/PersonLocator';
 import {View} from 'react-native';
 import { Button, ButtonGroup, ThemeProvider, Card } from 'react-native-elements';
@@ -28,7 +28,6 @@ class RenderMe extends Component{
 }
 
 class MainMap extends Component {
-
     renderVehicles() {
         // renders all of the vehicles on the map
         // if you need help, highlights the car that should be coming to your area
@@ -41,7 +40,7 @@ class MainMap extends Component {
     }
 
     fixUndefined(val) {
-        if(!val || val == NaN || val == undefined) {
+        if(!val || val == NaN || val == undefined || val == null) {
             return 0;
         } else {
             return val;
@@ -53,14 +52,16 @@ class MainMap extends Component {
         return <Circle zIndex = {999} strokeColor = {rgba(255, 0, 0, 1)} coordinate = {{latitude: this.fixUndefined(x), longitude: this.fixUndefined(y)}} radius = {rad} />
     }
 
+
     render() {
-        return <View> 
+        return ( <View>
         <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 0, paddingBottom: 600 } }
-            initialRegion = {{latitude: this.fixUndefined(this.props.pickupLat), longitude: this.fixUndefined(this.props.pickupLong), latitudeDelta: 1, longitudeDelta: 1}} >
+            initialRegion = {{latitude: this.fixUndefined(38.4285), longitude: this.fixUndefined(20.6765), latitudeDelta: 1, longitudeDelta: 1}} >
             </MapView>
-            
-        <PersonLocator/> 
-        </View>;
+        
+            <PersonLocator/>   
+            </View>
+        );
     }
 }
 
@@ -71,12 +72,20 @@ class MainMap extends Component {
 
 function mapStateToProps (state) {
     return {
+        latlng: {
+            myLat: state.Reducer.curLat,
+            myLong: state.Reducer.curLong
+        },
         myLat: state.Reducer.curLat,
         myLong: state.Reducer.curLong,
         pickupLat: state.Reducer.pickupLat,
         pickupLong: state.Reducer.pickupLong,
         pending: state.Reducer.pending
     }
+}
+
+function mapDispatchToProps(state) {
+
 }
 
 const MapPage = connect(mapStateToProps)(MainMap);

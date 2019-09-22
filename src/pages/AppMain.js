@@ -13,6 +13,7 @@ import { LOGIN } from '../actions/types.js';
 
 class AppMain extends Component {
       render() {
+        return <MapPage/>;
         if(this.props.loggedin) {
           return <MapPage />
         } else {

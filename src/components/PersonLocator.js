@@ -37,8 +37,8 @@ class PersonLocator1 extends Component {
 
     // sends people to map address
     onAddressClick(lat, long) {
-        const num1 = this.fixUndefined(lat);
-        const num2 = this.fixUndefined(long);
+        const num1 = this.fixUndefined(38.4188);
+        const num2 = this.fixUndefined(20.672);
         const add = this.formatAddress(num1, num2);
         Linking.openURL(add); 
 
