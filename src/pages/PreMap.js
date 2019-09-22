@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 import DisasterPopup from '../components/DisasterPopup';
 
 
-class RenderMe extends Component{
+class PreMap extends Component {
 
     fixUndefined(val) {
         if(!val || val == NaN || val == undefined) {
@@ -16,41 +16,6 @@ class RenderMe extends Component{
         } else {
             return val;
         }
-    }
-
-    render() {
-        const latlng = {
-            latitude: this.fixUndefined(this.props.x), 
-            longitude: this.fixUndefined(this.props.y)
-        }
-        return <Circle center = {latlng} radius = {this.props.rad} />;
-    }
-}
-
-class MainMap extends Component {
-
-    renderVehicles() {
-        // renders all of the vehicles on the map
-        // if you need help, highlights the car that should be coming to your area
-        // or to pick you up
-    }
-
-    renderPeople() {
-        // renders all the people on the map
-        // if you need to help someone, highlights the person you have to pick up
-    }
-
-    fixUndefined(val) {
-        if(!val || val == NaN || val == undefined) {
-            return 0;
-        } else {
-            return val;
-        }
-    }
-
-    // draws the disaster radius you are contained in
-    renderZone(x, y, rad) {
-        return <Circle zIndex = {999} strokeColor = {rgba(255, 0, 0, 1)} coordinate = {{latitude: this.fixUndefined(x), longitude: this.fixUndefined(y)}} radius = {rad} />
     }
 
     render() {
@@ -73,6 +38,7 @@ function mapStateToProps (state) {
         pending: state.Reducer.pending
     }
 }
+
 
 const MapPage = connect(mapStateToProps)(MainMap);
 export default MapPage;

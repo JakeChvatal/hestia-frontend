@@ -90,6 +90,13 @@ function mapStateToProps (state) {
     }
 }
 
+/*
+function mapDispatchToProps(dispatch) {
+    return {
+
+    }
+}*/
+
 
 const PersonLocator = connect(
     mapStateToProps
