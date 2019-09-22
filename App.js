@@ -8,8 +8,8 @@ import Login from './src/pages/Login.js'
 import MainMap from './src/pages/MainMap.js';
 import MapView from 'react-native-maps';
 
-import store from './store';
-import Provider from 'react-redux'; 
+import {Provider} from 'react-redux'; 
+import configureStore from './store';
 
 export default class App extends Component {
   constructor(props) { 
@@ -56,7 +56,7 @@ export default class App extends Component {
   render() {
     store = " ";
     return (
-    <Provider store={store}>
+    <Provider store={configureStore()}>
       {this.displayPage(this.state.login)}
     </Provider>
     );

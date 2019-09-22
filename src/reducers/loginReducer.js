@@ -1,9 +1,12 @@
+import initialState from '../initialState';
 
-const Login = (state = initialState, action) => {
+const LoginR = (state = initialState, action) => {
     switch(action.type) {
         case 'LOGIN_SUCCESS':
-            return;
+            return initialState;
     }
+
+    return initialState;
 }
 
-export default Login;
+export default LoginR;

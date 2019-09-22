@@ -1,4 +1,6 @@
 import { createStore, combineReducers } from 'redux';
-import rootReducer from './src/reducers';
+import rootReducer from './src/reducers/rootReducer';
 
-export default store = createStore(rootReducer); 
+export default function configureStore() {
+    return createStore(rootReducer); 
+} 

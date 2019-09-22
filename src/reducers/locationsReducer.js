@@ -1,9 +1,12 @@
+import initialState from '../initialState';
 
-const Locations = (state = initialState, action) => {
+const LocationsR = (state = initialState, action) => {
     switch(action.type) {
         case 'LOGIN_SUCCESS':
             return;
     }
+
+    return initialState;
 }
 
-export default Locations;
+export default LocationsR;
