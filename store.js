@@ -1,6 +1,4 @@
-// store.js
-
 import { createStore, combineReducers } from 'redux';
-//import rootReducer from './reducers/placeReducer';
- 
-export default configureStore; 
+import rootReducer from './src/reducers';
+
+export default store = createStore(rootReducer); 

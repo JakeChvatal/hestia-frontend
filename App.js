@@ -13,7 +13,7 @@ import Provider from 'react-redux';
 
 export default class App extends Component {
   constructor(props) { 
-    super(props);
+    super(props); 
     this.state = {
       login: false,
       latitude: 0,

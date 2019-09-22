@@ -24,10 +24,16 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.brh.hestia"
     },
     "android": {
-      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION"]
-    }
+        "package": "com.brh.hestia",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
+    },
+    "description": ""
   }
 }
