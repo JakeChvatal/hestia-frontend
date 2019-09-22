@@ -1,19 +1,42 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component }         from 'react';
+import { View } from 'react-native';
+import { Text } from 'react-native';
+import { Notifications } from 'expo';
+import * as Permissions from 'expo-permissions';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+import Login from './src/pages/Login.js'
+import MainMap from './src/pages/MainMap.js';
+import MapView from 'react-native-maps';
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      login: false
+    };
+  }
+  
+  onLogin() {
+    onreadystatechange = () => {
+      this.setState({
+        login: true
+      });
+      this.forceUpdate();
+    }
+  }
+
+  displayPage(login) {
+    if(login === true) {
+      return <MainMap />
+    } else {
+      return <Login onLogin = {this.onLogin}/>
+    }
+  }
+  
+  render() {
+    return this.displayPage(this.state.login);
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+//   
