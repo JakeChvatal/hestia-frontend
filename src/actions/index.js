@@ -5,8 +5,7 @@ export function login() {
         type: LOGIN
     }
 
-    dispatch(action);
-    dispatch(logLocation());
+    return action;
 }
 
 export function logLocation(lat, long) {
@@ -14,7 +13,7 @@ export function logLocation(lat, long) {
         type: LOG_LOCATION
     }
 
-    dispatch(action)
+    return action;
 }
 
 export function beginDriving() {
@@ -22,7 +21,7 @@ export function beginDriving() {
         type: BEGIN_DRIVING
     }
 
-    dispatch(action)
+    return action;
 }
 
 export function dropoff() {
@@ -30,5 +29,5 @@ export function dropoff() {
         type: DROPOFF
     }
 
-    dispatch(action)
+    return action;
 }

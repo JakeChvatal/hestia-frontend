@@ -7,8 +7,8 @@ const Reducer = (state = initialState, action) => {
         case BEGIN_DRIVING:
             axios.get('https://hestia-bigredhacks2019.herokuapp.com/api/getmyassignment')
             .then = (response => {
-                state = {
-                    ...state,
+                state.Reducer = {
+                    ...state.Reducer,
                     pickupLat: response.data.latitude,
                     pickupLong: response.data.longitude,
                     numRiders: response.data.numRiders,
@@ -21,16 +21,16 @@ const Reducer = (state = initialState, action) => {
                     console.log(error);
                 });
         case LOGIN:
-            state = {
-                ...state,
+            state.Reducer = {
+                ...state.Reducer,
                 loggedin: true
             }
             return state;
             
         case LOG_LOCATION:
 
-            const lat;
-            const long;    
+            const lat = 0;
+            const long = 0;    
             navigator.geolocation.getCurrentPosition(
                 position => {
                 const latitude = JSON.stringify(position.coords.latitude);
@@ -42,8 +42,8 @@ const Reducer = (state = initialState, action) => {
                 { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
             );
 
-            state = {
-                ...state,
+            state.Reducer = {
+                ...state.Reducer,
                 curLat: lat,
                 curLong: long
             }
