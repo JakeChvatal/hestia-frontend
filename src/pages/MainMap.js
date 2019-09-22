@@ -23,7 +23,7 @@ export default class MainMap extends Component {
 
     render() {
         return <View>
-            <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 1 } } >
+            <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 1, paddingBottom: 600 } } >
             {this.renderZone(this.props.x, this.props.y, this.props.rad)}
             {this.renderVehicles()}
             {this.renderPeople()}

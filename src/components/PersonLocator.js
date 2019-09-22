@@ -11,9 +11,10 @@ import { Button, ButtonGroup, ThemeProvider, Card } from 'react-native-elements'
 export default class PersonLocator extends Component {
     
     constructor(props) {
-        this.state = {
+        super(props);
+        this.state = ({
             findingPerson: true
-        }
+        });
     }
     
     // helper function to format the address to click
@@ -52,7 +53,7 @@ export default class PersonLocator extends Component {
 
     render() {
         return (
-        <Card>
+        <Card containerStyle = {{}}>
             {this.displayButton()}
         </Card>
         );

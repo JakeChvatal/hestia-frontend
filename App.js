@@ -5,7 +5,6 @@ import * as Permissions from 'expo-permissions';
 
 import Login from './src/pages/Login.js'
 import MainMap from './src/pages/MainMap.js';
-import MapView from 'react-native-maps';
 
 import {Provider} from 'react-redux'; 
 import configureStore from './store';
@@ -14,10 +13,12 @@ export default class App extends Component {
   constructor(props) { 
     super(props); 
     this.state = {
-      login: true,
+      login: false,
       latitude: 0,
       longitude: 0
-    };
+    }
+
+    this.onLogin.bind(this)
   }
   
   findCurrentLocation() {
@@ -41,11 +42,15 @@ export default class App extends Component {
         login: true
       });
       this.forceUpdate();
+      
+      // TODO: post with current location, store current location 
+      this.findCurrentLocation();
+
     }
   }
 
   displayPage(login) {
-    if(login === true) {
+    if(login == true) {
       return <MainMap />
     } else {
       return <Login onLogin = {this.onLogin}/>
@@ -53,7 +58,6 @@ export default class App extends Component {
   }
   
   render() {
-    store = " ";
     return (
     <Provider store={configureStore()}>
       {this.displayPage(this.state.login)}
@@ -61,6 +65,3 @@ export default class App extends Component {
     );
   }
 }
-
-
-//   

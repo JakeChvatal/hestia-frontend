@@ -10,22 +10,22 @@ import {
 } from 'react-native';
  
 import ChooseId from '../components/ChooseId.js';
-import { Input, Avatar, Button, Card, ThemeProvider } from 'react-native-elements';
+import { Input, Avatar, Button, ButtonGroup, Card, ThemeProvider } from 'react-native-elements';
 import Axios from 'axios';
 
-const buttons = ['Guardian', 'Citizen']
+const buttons = ['Guardian', 'Citizen'];
 export default class Login extends Component {
-  
   constructor(props) {
+    super(props);
     this.state = {
       email: '',
       password: '',
       selectedIndex: 2,
       error: false,
-      fullName:this.state.fullName,
-      cellPhoneNum: this.state.cellPhoneNum,
-      zipCode: this.state.zipCode
-    }
+      fullName:'',
+      cellPhoneNum: '',
+      zipCode: ''
+    };
     this.updateIndex = this.updateIndex.bind(this)
     this.onClickLogin = this.onClickLogin.bind(this)
     this.onClickRegister = this.onClickRegister.bind(this)
@@ -43,19 +43,19 @@ export default class Login extends Component {
     Axios.post('https://hestia-bigredhacks2019.herokuapp.com/api/login', 
     {
       email: this.state.email,
-      'password': this.state.password
+      password: this.state.password
     }).then = (response => {
       // TODO: good or bad stuff
         if(response.data.message == 'Success.') {
           // set global state loggedIn to true as well
         } else {
             this.setState({
-              error = true
-          });
+              error: true
+            });
         }
     }).catch = (err) => {
     this.setState({
-      error = true
+      error: true
     });
     }
   }
@@ -74,12 +74,12 @@ export default class Login extends Component {
         // set global state loggedIn to true as well
       } else {
           this.setState({
-            error = true
+            error: true
         });
       }
     }).catch = (err) => {
       this.setState({
-        error = true
+        error: true
       });
     }
   }
@@ -118,39 +118,48 @@ export default class Login extends Component {
     });
   }
 
+  errorMsg() {
+    if(this.state.error) {
+      return <Text>
+        Error! Please fill in all of the information and try again.
+      </Text>;
+    }
+  }
+
   render() {
     const { selectedIndex } = this.state.selectedIndex;
 
     return (
       <ThemeProvider>
-      <Card containerStyle={{flex: 0, marginLeft: 20, marginTop: 120}}>
-        <Image style={{paddingLeft: 100, paddingRight: 40, width: 150, height: 150, borderRadius: 30}}
+      <Card containerStyle={{flex: 0, marginLeft: 20, marginTop: 60}}>
+        <Image style={{paddingLeft: 100, paddingRight: 40, width: 80, height: 100, borderRadius: 30}}
            containerStyle={{flex: 0, paddingLeft: 100, marginLeft: 100, marginRight: 40, marginTop: 10, marginBottom: 20}}
           source = {require('../../assets/logo.png')}/>
-        <TextInput
+          {this.errorMsg()}
+        <Input
         placeholder='Name'
-        onChangeText = {text => onChangeName(text)}
-        containerStyle={{flex: 0, marginBottom: 20}}
+        onChangeText = {text => this.onChangeName(text)}
+        containerStyle={{flex: 0, marginBottom: 5}}
         />
-        <TextInput
+        <Input
         placeholder='Email'
-        onChangeText = {text => onChangeUsername(text)}
-        containerStyle={{flex: 0, marginBottom: 20}}
+        onChangeText = {text => this.onChangeUsername(text)}
+        containerStyle={{flex: 0, marginBottom: 5}}
         />
-        <TextInput
+        <Input
         placeholder='Password'
-        onChangeText = {text => onChangePassword(text)}
-        containerStyle={{flex: 0, marginBottom: 20}}
+        onChangeText = {text => this.onChangePassword(text)}
+        containerStyle={{flex: 0, marginBottom: 5}}
         />
-        <TextInput
+        <Input
         placeholder='Zip Code'
-        onChangeText = {text => onChangeZipCode(text)}
-        containerStyle={{flex: 0, marginBottom: 20}}
+        onChangeText = {text => this.onChangeZipCode(text)}
+        containerStyle={{flex: 0, marginBottom: 5}}
         />
-        <TextInput
+        <Input
         placeholder='Cell #'
-        onChangeText = {text => onChangePhone(text)}
-        containerStyle={{flex: 0, marginBottom: 20}}
+        onChangeText = {text => this.onChangePhone(text)}
+        containerStyle={{flex: 0, marginBottom: 5}}
         />
         <ChooseId>
         <ButtonGroup
@@ -160,9 +169,11 @@ export default class Login extends Component {
             containerStyle={{height: 100}}
           />
         </ChooseId>
-        <Button title = "Log In" containerStyle={{flex: 0, marginLeft: 40, marginRight: 40, marginTop: 10}}></Button>
+        <Button title = "Log In"
+
+        containerStyle={{flex: 0, marginLeft: 40, marginRight: 40, marginTop: 10}}></Button>
         <Button 
-        onPress = {this.props.onLogin()}
+        onPress = {this.props.onLogin}
         title = "Register" containerStyle={{flex: 0, marginLeft: 40, marginRight: 40, marginTop: 10}}></Button>
       
       <Text style = {{ fontSize: 12, fontWeight: 'bold', color: 'gray', marginBottom: 0, paddingTop: 25, paddingBottom: 0}}>
@@ -170,8 +181,6 @@ export default class Login extends Component {
         Made with love at Big Red Hacks!
         </Text>
       </Card>
-
-        
       </ThemeProvider>
     );
   }
