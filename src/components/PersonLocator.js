@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, ButtonGroup, ThemeProvider } from 'react-native-elements';
+import { Button, ButtonGroup, ThemeProvider, Card } from 'react-native-elements';
  
 // bottom part of map, similar to uber
 // shows next person to pick up or car 
@@ -9,10 +9,9 @@ import { Button, ButtonGroup, ThemeProvider } from 'react-native-elements';
 // this will display the address to the safe haven
 
 export default class PersonLocator extends Component {
+    
     constructor(props) {
         this.state = {
-            lat: this.props.lat,
-            long: this.props.long,
             findingPerson: true
         }
     }
@@ -40,12 +39,12 @@ export default class PersonLocator extends Component {
     displayButton() {
         if(this.state.findingPerson) {
             return <Button 
-            onPress = {this.onAddressClick}
+            //onPress = {this.onAddressClick}
             title = "Navigate to Person" containerStyle={{flex: 0, marginLeft: 40, marginRight: 40, marginTop: 10}}>
         </Button>
         } else {
             return <Button 
-            onPress = {this.props.depositedPeople}
+            //onPress = {this.props.depositedPeople}
             title = "Drop Off" containerStyle={{flex: 0, marginLeft: 40, marginRight: 40, marginTop: 10}}>
         </Button>
         }

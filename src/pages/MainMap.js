@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import MapView, { PROVIDER_GOOGLE, Marker, Circle } from 'react-native-maps';
+import PersonLocator from '../components/PersonLocator';
+import {View} from 'react-native';
 
 export default class MainMap extends Component {
 
@@ -20,10 +22,13 @@ export default class MainMap extends Component {
     }
 
     render() {
-        return <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 1 } } >
+        return <View>
+            <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 1 } } >
             {this.renderZone(this.props.x, this.props.y, this.props.rad)}
             {this.renderVehicles()}
             {this.renderPeople()}
-        </MapView>
+            </MapView>
+            <PersonLocator/>
+        </View>
     }
 }

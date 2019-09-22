@@ -1,5 +1,4 @@
 import React, { Component }         from 'react';
-import { View } from 'react-native';
 import { Text } from 'react-native';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
@@ -15,7 +14,7 @@ export default class App extends Component {
   constructor(props) { 
     super(props); 
     this.state = {
-      login: false,
+      login: true,
       latitude: 0,
       longitude: 0
     };
