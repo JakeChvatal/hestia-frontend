@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import MapView, { PROVIDER_GOOGLE, Marker, Circle } from 'react-native-maps';
 import PersonLocator from '../components/PersonLocator';
 import {View} from 'react-native';
+import { connect } from "react-redux";
 
-export default class MainMap extends Component {
+class MainMap extends Component {
 
     renderVehicles() {
         // renders all of the vehicles on the map
@@ -18,13 +19,14 @@ export default class MainMap extends Component {
 
     // draws the disaster radius you are contained in
     renderZone(x, y, rad) {
-        //return <Circle radius = {rad} />
+        return <Circle radius = {rad} />
     }
 
     render() {
         return <View>
             <MapView provider={ PROVIDER_GOOGLE } style={ { flex: 1, paddingBottom: 600 } } >
-            {this.renderZone(this.props.x, this.props.y, this.props.rad)}
+            {this.renderZone(this.props.curLat, this.props.curLong, 5)}
+            {this.renderZone(this.props.pickupLat, this.props.pickupLong, 8)}
             {this.renderVehicles()}
             {this.renderPeople()}
             </MapView>
@@ -32,3 +34,15 @@ export default class MainMap extends Component {
         </View>
     }
 }
+
+function mapStateToProps (state) {
+    return {
+        myLat: state.curLat,
+        myLong: state.curLong,
+        pickupLat: state.pickupLat,
+        pickupLong: state.pickupLong 
+    }
+}
+
+const MapPage = connect(mapStateToProps)(MainMap);
+export default MapPage;

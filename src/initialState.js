@@ -1,6 +1,6 @@
 export default initialState = {
-    "localState": {
-        "loggedIn": false,
+   /*localState: {
+        loggedIn: false,
         "guardian": false,
         "curLat": 0,
         "curLong": 0
@@ -8,16 +8,21 @@ export default initialState = {
     "cars": {
         "locations":[]
     },
-    "disaster": {
-        "radius": 0,
-        "lat": 0,
-        "long": 0
-    },
-    "stats": {
+    disaster: {
+        radius: 0,
         lat: 0,
-        long: 0,
+        long: 0
+    },
+    stats: {
         numRiders: 0,
         maxNumRiders: 0,
         pending: false
+    },*/
+    LoginR:{
+        lat: 0,
+        long: 0
+    },
+    LocationsR:{
+
     }
 }
