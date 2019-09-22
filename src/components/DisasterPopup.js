@@ -4,17 +4,7 @@ import { Button, ButtonGroup, ThemeProvider } from 'react-native-elements';
 // pops up when there is a disaster nearby
 // functionality depends on whether you are driver or user
 export default class DisasterPopup extends Component {
-    displayDriverForm() {
-        if(this.props.isDriver) {
-            <Input
-               placeholder='# of People'
-               containerStyle={{flex: 0, marginBottom: 20}}
-           />
-       }
-    }
-    
     render() {
-
         const buttons = ['Yes', 'No']
         return (
             <ThemeProvider>
@@ -28,6 +18,11 @@ export default class DisasterPopup extends Component {
                 selectedIndex={selectedIndex}
                 buttons={buttons}
                 containerStyle={{height: 100}}
+                />
+
+                <Input
+                placeholder='# of People'
+                containerStyle={{flex: 0, marginBottom: 20}}
                 />
 
                 {this.displayDriverForm()}                

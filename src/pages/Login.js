@@ -42,7 +42,7 @@ export default class Login extends Component {
       
       <Text style = {{ fontSize: 12, fontWeight: 'bold', color: 'gray', marginBottom: 0, paddingTop: 25, paddingBottom: 0}}>
         © 2019 Alexander La Cour, Andrew Yates, Jacob Chvatal and Victor Something.
-        Made with love at Big Red Hacks uwu!
+        Made with love at Big Red Hacks uwu 3 = D!
         </Text>
       </Card>
 
